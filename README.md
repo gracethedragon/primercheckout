@@ -47,22 +47,7 @@ npm i
 
 ### 🔑 Set up the API Key
 
-Grab your API Key, or create a new one, from the [Primer Dashboard](https://dashboard.sandbox.primer.io/developers/apiKeys).
-
-![Dashboard API Key](./images/apikey.png)
-
-Clone `env.example` and name the cloned file `.env`.
-
-```
-cp env.example .env
-```
-
-Open `.env` and set the environment variable `API_KEY` with the API key available on your dashboard.
-
-```
-# .env
-API_KEY=1234-1234-1234-1234 # Your Primer API Key
-```
+stored in .env
 
 ### 🏃‍♂️ Run the server
 
@@ -74,15 +59,17 @@ yarn start
 npm start
 ```
 
-The server is deployed on port `8880` by default. You can change the port by setting the `PORT` environment variable in the `.env` file.
+The server is deployed on port `3000` by default. You can change the port by setting the `PORT` environment variable in the `.env` file.
 
 ### 💳 Access the checkout
 
-Check the checkout at [http://localhost:8880/](http://localhost:8880/).
+Check the checkout at [http://localhost:3000/](http://localhost:3000/).
 
 You should see Universal Checkout appear with the payment methods configured on your [Dashboard](https://dashboard.sandbox.primer.io/checkout)! 🎉
 
 ![Checkout UI](./images/checkout.png)
+
+For testing purposes, only card payment method results in a success. Use card number 4242 4242 4242 4242 and any mm/yy, cvv, name detail to test it out!
 
 ## 👀 What's next?
 

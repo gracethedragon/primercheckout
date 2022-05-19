@@ -102,6 +102,6 @@ app.post('/client-session', async (req, res) => {
 // 🏃‍♂️ Run Server
 ///////////////////////////////////////////
 
-const PORT = process.env.PORT || 8880;
+const PORT = process.env.PORT || 3000;
 console.log(`Checkout server listening on port ${PORT}.\nYou can now view the Checkout in a web browser at http://localhost:${PORT}`);
 app.listen(PORT);
