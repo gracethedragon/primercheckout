@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      #items-container, #buttons {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        width: 80vw;
+        padding: 24px 24px;
+        text-align: center;
+        justify-content: center;
+      }
+      #buttons {
+        justify-content: space-around;
+      }
+    </style>
+    <link
+      rel="stylesheet"
+      href="https://sdk.primer.io/web/v2.0.0/Checkout.css"
+    />
+    <script
+      src="https://sdk.primer.io/web/v2.0.0/Primer.min.js"
+      crossorigin="anonymous"
+    ></script>
+    
+    
+    <link rel="stylesheet" href="/static/style.css" />
+  </head>
+  <body>
+    <h1>Coffee Time</h1>
+    <div id="items-container">
+      <div class="item">
+        <h2>Cappuccino</h2>
+        <img src="/static/images/cappuccino.jpg" alt="cappuccino">
+        <h3>EUR 4.00</h3>
+        <button onclick="add('cappuccino', 4)">Add to cart</button>
+      </div>
+      <div class="item">
+        <h2>Latte</h2>
+        <img src="/static/images/latte.jpg" alt="latte">
+        <h3>EUR 4.25</h3>
+        <button onclick="add('latte', 4.25)">Add to cart</button>
+      </div>
+      <div class="item">
+        <h2>Mocha</h2>
+        <img src="/static/images/mocha.jpg" alt="mocha">
+        <h3>EUR 5.25</h3>
+        <button onclick="add('mocha',5.25)">Add to cart</button>
+      </div>
+      <div class="item">
+        <h2>Americano</h2>
+        <img src="/static/images/americano.jpg" alt="americano">
+        <h3>EUR 3.50</h3>
+        <button onclick="add('americano',3.50)">Add to cart</button>
+      </div>
+      <div class="item">
+        <h2>Macchiato</h2>
+        <img src="/static/images/macchiato.jpg" alt="macchiato">
+        <h3>EUR 3.50</h3>
+        <button onclick="add('macchiato',3.50)">Add to cart</button>
+      </div>
+      <div class="item">
+        <h2>Espresso</h2>
+        <img src="/static/images/espresso.jpg" alt="espresso">
+        <h3>EUR 3.00</h3>
+        <button onclick="add('espresso',3.00)">Add to cart</button>
+      </div>
+    </div>
+    <div id="cartItems"></div>
+    <div id="cartValue"></div>
+    <div id="buttons">
+      <button onclick="clearBasket()">Clear basket</button>
+      <form method="post" action="/checkout">
+        <button type="submit" name="checkoutValue" id="checkoutValue">Checkout</button>
+      </form>
+    </div>
+    
+  </body>
+  <script src="/static/shop.js"></script>
+  <!-- <script src=".././server.js"></script> -->
+</html>

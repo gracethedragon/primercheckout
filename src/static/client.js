@@ -6,8 +6,9 @@ async function onLoaded() {
     headers: { 'Content-Type': 'application/json' },
   }).then(data => data.json())
 
-  const { clientToken } = clientSession
 
+  const { clientToken } = clientSession
+  // for testing purposes, only 'success' method would be to checkout with card
   const universalCheckout = await Primer.showUniversalCheckout(clientToken, {
     // Specify the selector of the container element
     container: '#checkout-container',

@@ -5,6 +5,8 @@ const express = require('express');
 const fetch = require('node-fetch');
 require('dotenv').config();
 
+let checkoutValue;
+
 ///////////////////////////////////////////
 // ⚙️ Setup Server
 ///////////////////////////////////////////
@@ -13,12 +15,32 @@ const app = express();
 
 const staticDir = path.join(__dirname, 'static');
 const checkoutPage = path.join(__dirname, 'static', 'checkout.html');
+const shop = path.join(__dirname, 'static', 'shop.html');
 
 app.use(bodyParser.json());
 app.use('/static', express.static(staticDir));
 
-app.get('/', (req, res) => {
-  return res.sendFile(checkoutPage);
+// Bind Express middleware to parse request bodies for POST requests
+app.use(express.urlencoded({ extended: false }));
+
+app.get('/', (req,res)=>{
+  return res.sendFile(shop)
+})
+
+// To send checkout value and redirect to checkout page
+app.post('/checkout', async (req,res)=>{
+  checkoutValue = await req.body.checkoutValue
+  return res.redirect('/checkout')
+})
+
+// To check if there are items added to card for checkout; if checkout value is 0 / undefined, keep the user on the shopping page
+app.get('/checkout', (req, res) => {
+  console.log('checkoutValue', checkoutValue, typeof(checkoutValue))
+  if(checkoutValue === undefined || checkoutValue === '' ){
+    return res.redirect('/')
+  } else {
+    return res.sendFile(checkoutPage);
+  }
 });
 
 ///////////////////////////////////////////
@@ -27,7 +49,7 @@ app.get('/', (req, res) => {
 ///////////////////////////////////////////
 
 const PRIMER_API_URLS = {
-  SANDBOX: 'https://api.sandbox.primer.io',
+  SANDBOX: 'https://api.sandbox.primer.io', // workflow version 39
   PRODUCTION: 'https://api.primer.io',
 }
 
@@ -58,11 +80,12 @@ app.post('/client-session', async (req, res) => {
         //  > Pass a single line item with the total amount!
         lineItems: [
           {
-            itemId: 'shoes-123',
-            description: 'Some nice shoes!',
-            amount: 2500, // Amount should be in minor units!
+            itemId: 'coffee-123',
+            description: 'coffee',
+            amount: checkoutValue*100, // Amount should be in minor units!
             quantity: 1,
           },
+         
         ],
       }
 
@@ -72,6 +95,7 @@ app.post('/client-session', async (req, res) => {
 
   return res.send(response);
 });
+
 
 
 ///////////////////////////////////////////
