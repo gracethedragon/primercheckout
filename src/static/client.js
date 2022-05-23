@@ -1,17 +1,17 @@
 window.addEventListener("load", onLoaded);
 
 async function onLoaded() {
-  const clientSession = await fetch('/client-session', {
-    method: 'post',
-    headers: { 'Content-Type': 'application/json' },
-  }).then(data => data.json())
+  const clientSession = await fetch("/client-session", {
+    method: "post",
+    headers: { "Content-Type": "application/json" },
+  }).then((data) => data.json());
 
+  const { clientToken } = clientSession;
 
-  const { clientToken } = clientSession
   // for testing purposes, only 'success' method would be to checkout with card
   const universalCheckout = await Primer.showUniversalCheckout(clientToken, {
     // Specify the selector of the container element
-    container: '#checkout-container',
+    container: "#checkout-container",
 
     /**
      * When the checkout flow has been completed, you'll receive
@@ -19,7 +19,7 @@ async function onLoaded() {
      * Implement this callback to redirect the user to an order confirmation page and fulfill the order.
      */
     onCheckoutComplete({ payment }) {
-      console.log('Checkout Complete!', payment)
+      console.log("Checkout Complete!", payment);
     },
 
     /**
@@ -27,5 +27,5 @@ async function onLoaded() {
      * https://primer.io/docs
      * https://www.npmjs.com/package/@primer-io/checkout-web
      */
-  })
+  });
 }

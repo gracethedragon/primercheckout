@@ -47,7 +47,7 @@ npm i
 
 ### 🔑 Set up the API Key
 
-stored in .env
+rename env.example to .env
 
 ### 🏃‍♂️ Run the server
 
