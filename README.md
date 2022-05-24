@@ -47,7 +47,7 @@ npm i
 
 ### 🔑 Set up the API Key
 
-rename env.example to .env
+refer to API key for 'testcheckout' on https://sandbox-dashboard.primer.io/developers/apiKeys
 
 ### 🏃‍♂️ Run the server
 
